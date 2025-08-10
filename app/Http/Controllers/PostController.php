@@ -31,7 +31,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = $request->validate([
+            'body' => ['required']
+        ]);
+
+        Post::create($fields);
+
+        return redirect('/');
     }
 
     /**
@@ -45,7 +51,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Request $post)
     {
         //
     }

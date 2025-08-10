@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
 
 export default function Home({ posts }) {
-  console.log(posts)
   return (
       <div className="container w-[800px] mt-2">
           <div className="grid grid-cols-3 gap-3 line-clamp">
