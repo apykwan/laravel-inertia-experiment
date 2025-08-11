@@ -11,6 +11,6 @@
 }
 
 #nprogress .bar {
-  background: #b45309;  /* Your custom color, e.g. amber-700 */
+  background: #b45309 !important;
 }
 

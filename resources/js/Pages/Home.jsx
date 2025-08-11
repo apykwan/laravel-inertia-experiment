@@ -1,24 +1,36 @@
-import { Link } from "@inertiajs/react";
+import { Link } from "@inertiajs/react"
+import { useRoute } from '@vendor'
 
 export default function Home({ posts }) {
+  const route = useRoute()
   return (
       <div className="container w-[800px] mt-2">
-          <div className="grid grid-cols-3 gap-3 line-clamp">
-              {posts?.data.map((post, idx) => (
-                  <div
-                      key={idx}
-                      className="p-4 h-[150px]"
-                      style={{ boxShadow: "0 1px 2px 0 rgba(180, 83, 9, 0.5)" }}
-                  >
-                      <div className="text-xs text-slate-300">
-                          <span>Post At: </span>
-                          <span>
-                              {new Date(post.created_at).toLocaleTimeString()}
-                          </span>
+          <div className="h-[400px] ">
+              <div className="grid grid-cols-3 gap-4 line-clamp">
+                  {posts?.data.map((post, idx) => (
+                      <div
+                          key={idx}
+                          className="p-4 h-[150px] space-y-2 rounded-md shadow-md bg-zinc-50"
+                      >
+                          <div className="text-xs text-slate-300">
+                              <span>Post On: </span>
+                              <span>
+                                  {new Date(
+                                      post.created_at
+                                  ).toLocaleTimeString()}
+                              </span>
+                          </div>
+                          <p className="text-lg">{post.body}</p>
+
+                          <Link
+                              href={route('posts.show', post)}
+                              className="text-amber-700 font-extrabold"
+                          >
+                              Read more...
+                          </Link>
                       </div>
-                      <p className="text-lg">{post.body}</p>
-                  </div>
-              ))}
+                  ))}
+              </div>
           </div>
 
           <div className="mt-8">
@@ -27,7 +39,7 @@ export default function Home({ posts }) {
                       link.url ? (
                           <Link
                               key={`${link.label}-${idx}`}
-                              className={`rounded-md ${
+                              className={`p-3 rounded-4xl ${
                                   link.active
                                       ? "bg-amber-700 hover:bg-amber-600"
                                       : "bg-amber-400 hover:bg-amber-300"
@@ -43,7 +55,7 @@ export default function Home({ posts }) {
                       ) : (
                           <span
                               key={`${link.label}-${idx}`}
-                              className="rounded-md bg-gray-400 mx-2 p-2 text-slate-100"
+                              className="rounded-4xl bg-gray-400 mx-2 p-3  text-slate-100"
                               dangerouslySetInnerHTML={{ __html: link.label }}
                           />
                       )
