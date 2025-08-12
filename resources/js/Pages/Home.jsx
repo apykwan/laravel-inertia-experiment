@@ -1,17 +1,23 @@
-import { Link } from "@inertiajs/react"
+import { useEffect } from 'react'
+import { Link, usePage } from "@inertiajs/react"
 import { useRoute } from '@vendor'
+import { toast } from "react-toastify";
 
 export default function Home({ posts }) {
   const route = useRoute()
+  const { flash } = usePage().props
 
+  useEffect(() => {
+    if (flash.message) toast(flash.message)
+  }, [flash.message])
   return (
-      <div className="container w-[800px] mt-2">
-          <div className="h-[400px] ">
+      <div className="flex flex-col w-[800px]">
+          <div className="flex items-center h-[600px] overflow-auto ">
               <div className="grid grid-cols-3 gap-4 line-clamp">
                   {posts?.data.map((post, idx) => (
                       <div
                           key={idx}
-                          className="p-4 h-[150px] space-y-2 rounded-md shadow-md bg-zinc-50"
+                          className="p-5 h-[200px] space-y-2 rounded-md shadow-md bg-zinc-50"
                       >
                           <div className="text-xs text-slate-300">
                               <span>Post on: </span>
@@ -21,7 +27,7 @@ export default function Home({ posts }) {
                                   ).toLocaleTimeString()}
                               </span>
                           </div>
-                          <p className="text-lg">{post.body}</p>
+                          <p className="text-lg line-clamp-3">{post.body}</p>
 
                           <Link
                               href={route("posts.show", post)}
@@ -33,7 +39,7 @@ export default function Home({ posts }) {
                   ))}
               </div>
           </div>
-          <div className="mt-8 flex">
+          <div className="flex">
               {Array.isArray(posts?.links) &&
                   posts.links.map((link, idx) => {
                       // Determine the label to display

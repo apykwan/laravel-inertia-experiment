@@ -13,9 +13,9 @@ export default function Show({ post }) {
     }
 
     return (
-      <div className="w-[800px] items-center flex justify-center gap-x-8">
-          <div className="flex flex-col justify-center items-center h-[400px] w-[400px] space-y-2 shadow-lg rounded-lg bg-zinc-100">
-              <div className="text-xs text-slate-300">
+      <div className="w-[800px] items-center flex justify-center gap-x-8 mt-14">
+          <div className="flex flex-col p-10 h-[400px] w-[400px] space-y-2 shadow-lg rounded-lg bg-zinc-100 overflow-auto">
+              <div className="text-xs mb-5 text-slate-300">
                   <span>Post On: </span>
                   <span>
                       {new Date(post.created_at).toLocaleTimeString()}

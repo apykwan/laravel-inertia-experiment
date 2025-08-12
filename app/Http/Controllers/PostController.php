@@ -37,7 +37,7 @@ class PostController extends Controller
 
         Post::create($fields);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'The Post has been created');
     }
 
     /**
@@ -71,6 +71,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect('/');
+        return redirect('/')->with('message', 'The Post has been deleted');
     }
 }
