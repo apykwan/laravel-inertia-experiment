@@ -12,6 +12,8 @@ export default function Home({ posts }) {
   }, [flash.message])
   return (
       <div className="flex flex-col w-[800px]">
+          
+  
           <div className="flex items-center h-[600px] overflow-auto ">
               <div className="grid grid-cols-3 gap-4 line-clamp">
                   {posts?.data.map((post, idx) => (
