@@ -51,17 +51,23 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $post)
+    public function edit(Post $post)
     {
-        //
+        return inertia('Edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        //
+        $field = $request->validate([
+            'body' => ['required']
+        ]);
+
+        $post->update($field);
+
+        return redirect('/')->with('message', 'The Post has been updated');
     }
 
     /**

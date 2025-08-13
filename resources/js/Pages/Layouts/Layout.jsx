@@ -6,7 +6,7 @@ export default function Layout({ children }) {
 
   function generateTitle() {
     if (component === 'Show') return `Post#${props.post.id}`
-
+    if (component === "Edit") return `Edit Post#${props.post.id}`;
     return component
   }
 
